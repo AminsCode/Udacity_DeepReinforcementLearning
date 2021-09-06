@@ -1,5 +1,11 @@
 The Environment
+
+
 For this project, we train an agent to navigate (and collect bananas) in a large, square world.
+
+
+![navigation](https://user-images.githubusercontent.com/89017449/132192881-f134212a-a2b7-4f10-a965-55ae33bf4c37.gif)
+
 
 
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.
