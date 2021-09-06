@@ -22,7 +22,7 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 
 
-### Getting Started
+### How to install the requirements
 
 Download the environment from one of the links below. You need only select the environment that matches your operating system:
 
