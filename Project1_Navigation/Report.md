@@ -98,5 +98,10 @@ To do so a Convolutional Neural Network would be added at the input of the netwo
 Other enhancements might also be implemented to increase the performance of the agent:
 
 - Double DQN
+  Deep Q-Learning tends to overestimate action values. Double Q-Learning has been shown to work well in practice to help with this.
+
+- Prioritized Experience Replay
+  Deep Q-Learning samples experience transitions uniformly from a replay memory. Prioritized experienced replay is based on the idea that the agent can learn more effectively from   some transitions than from others, and the more important transitions should be sampled with higher probability.
+
 - Dueling DQN
-- Prioritized experience replay
+  Currently, in order to determine which states are (or are not) valuable, we have to estimate the corresponding action values for each action. However, by replacing the          traditional Deep Q-Network (DQN) architecture with a dueling architecture, we can assess the value of each state, without having to learn the effect of each action.
