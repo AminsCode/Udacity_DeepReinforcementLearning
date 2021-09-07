@@ -1,3 +1,25 @@
+## Agent Implementation
+
+**Deep Q-Networks**
+
+This project implements a Value Based method called Deep Q-Networks.
+
+**Deep Q Learning combines 2 approaches:**
+
+- A Reinforcement Learning method called Q Learning (aka SARSA max)
+- A Deep Neural Network to learn a Q-table approximation (action-values)
+
+Especially, this implementation includes the 2 major training improvements by Deepmind and described in their Nature publication : ["Human-level control through deep reinforcement learning (2015)"](http://www.davidqiu.com:8888/research/nature14236.pdf)
+
+- Experience Replay: The act of sampling a small batch of tuples from the replay buffer in order to learn is known as experience replay. In addition to breaking harmful correlations, experience replay allows us to learn more from individual tuples multiple times, recall rare occurrences, and in general make better use of our experience.
+
+- Fixed Q Targets: 
+
+  ![image](https://user-images.githubusercontent.com/89017449/132307357-6c09916f-6fa2-48b2-8adb-546e7dc7e6e0.png)
+
+  Source: Deep Reinforcement Learning Nano Degree
+
+
 ## Code implementation
 
 The code used here is derived from the Deep Reinforcement Learning Nanodegree, and has been slightly adjusted for being used with the banana environment.
