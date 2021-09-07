@@ -1,10 +1,16 @@
+## Instructions
+
+Follow the instructions in Navigation_DQN.ipynb to get started with training your own agent! To watch a trained smart agent, follow the instructions below:
+
+DQN: If you want to run the original DQN algorithm, use the checkpoint.pth for loading the trained model. Also, choose the parameter qnetwork as QNetwork while defining the agent and the parameter update_type as dqn.
+
 ## Agent Implementation
 
 **Deep Q-Networks**
 
 This project implements a Value Based method called Deep Q-Networks.
 
-**Deep Q Learning combines 2 approaches:**
+Deep Q Learning combines 2 approaches:
 
 - A Reinforcement Learning method called Q Learning (aka SARSA max)
 - A Deep Neural Network to learn a Q-table approximation (action-values)
@@ -17,7 +23,7 @@ Especially, this implementation includes the 2 major training improvements by De
 
   ![image](https://user-images.githubusercontent.com/89017449/132307357-6c09916f-6fa2-48b2-8adb-546e7dc7e6e0.png)
 
-  Source: Deep Reinforcement Learning Nano Degree
+  Source: Deep Reinforcement Learning Nanodegree
 
 
 ## Code implementation
@@ -58,8 +64,43 @@ Train an agent using DQN
 Plot the scores
 
 
-## Instructions
 
-Follow the instructions in Navigation_DQN.ipynb to get started with training your own agent! To watch a trained smart agent, follow the instructions below:
+## DQN parameters and results
 
-DQN: If you want to run the original DQN algorithm, use the checkpoint dqn.pth for loading the trained model. Also, choose the parameter qnetwork as QNetwork while defining the agent and the parameter update_type as dqn.
+The DQN agent uses the following parameters values (defined in dqn_agent.py)
+
+```
+BUFFER_SIZE = int(1e5)  # replay buffer size
+BATCH_SIZE = 64         # minibatch size 
+GAMMA = 0.995           # discount factor 
+TAU = 1e-3              # for soft update of target parameters
+LR = 5e-4               # learning rate 
+UPDATE_EVERY = 4        # how often to update the network
+```
+
+The Neural Networks use the following architecture :
+
+```
+Input nodes (37) -> Fully Connected Layer (1024 nodes, Relu activation) -> Fully Connected Layer (1024 nodes, Relu activation) -> Ouput nodes (4)
+```
+
+The Neural Networks use the Adam optimizer with a learning rate LR=5e-4 and are trained using a BATCH_SIZE=64
+
+Given the chosen architecture and parameters, the results are :
+
+![Training_log](https://user-images.githubusercontent.com/89017449/132308655-84d82543-eede-4a85-9c4c-b2c16f2f8776.JPG)
+
+![Score](https://user-images.githubusercontent.com/89017449/132308729-75a8f5ee-e0a7-45e3-94a2-434faa23a1c3.JPG)
+
+These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +13, and in 1023 episodes only (In comparison, according to Udacity's solution code for the project, their agent was benchmarked to be able to solve the project in fewer than 1800 episodes)
+
+## Ideas for future work
+As discussed in the Udacity Course, a further evolution to this project would be to train the agent directly from the environment's observed raw pixels instead of using the environment's internal states (37 dimensions)
+
+To do so a Convolutional Neural Network would be added at the input of the network in order to process the raw pixels values (after some little preprocessing like rescaling the image size, converting RGB to gray scale, ...)
+
+Other enhancements might also be implemented to increase the performance of the agent:
+
+- Double DQN
+- Dueling DQN
+- Prioritized experience replay
