@@ -1,5 +1,7 @@
 ## Agent Implementation
 
+To solve the problem a Deep Q-Network (DQN) has been used. This implementation of this agent and the used parameters have been described below.
+
 **Deep Q-Networks**
 
 This project implements a Value Based method called Deep Q-Networks.
