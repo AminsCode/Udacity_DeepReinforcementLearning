@@ -88,7 +88,7 @@ Given the chosen architecture and parameters, the results are :
 
 ![Score](https://user-images.githubusercontent.com/89017449/134032701-9415ddf7-6f42-4b3a-b90e-c6fffe075d40.JPG)
 
-These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +13, and in 1023 episodes only (In comparison, according to Udacity's solution code for the project, their agent was benchmarked to be able to solve the project in fewer than 1800 episodes)
+These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +13, and in 500 episodes only (In comparison, according to Udacity's solution code for the project, their agent was benchmarked to be able to solve the project in fewer than 1800 episodes)
 
 ## Ideas for future work
 As discussed in the Udacity Course, a further evolution to this project would be to train the agent directly from the environment's observed raw pixels instead of using the environment's internal states (37 dimensions)
