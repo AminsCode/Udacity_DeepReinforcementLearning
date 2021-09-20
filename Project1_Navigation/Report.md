@@ -68,7 +68,7 @@ The DQN agent uses the following parameters values (defined in dqn_agent.py)
 ```
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 64         # minibatch size 
-GAMMA = 0.995           # discount factor 
+GAMMA = 0.99            # discount factor 
 TAU = 1e-3              # for soft update of target parameters
 LR = 5e-4               # learning rate 
 UPDATE_EVERY = 4        # how often to update the network
@@ -84,9 +84,9 @@ The Neural Networks use the Adam optimizer with a learning rate LR=5e-4 and are 
 
 Given the chosen architecture and parameters, the results are :
 
-![Training_log](https://user-images.githubusercontent.com/89017449/132308655-84d82543-eede-4a85-9c4c-b2c16f2f8776.JPG)
+![Training_log](https://user-images.githubusercontent.com/89017449/134032625-cfba33cd-e403-4f17-af0f-eac87d159218.JPG)
 
-![Score](https://user-images.githubusercontent.com/89017449/132308729-75a8f5ee-e0a7-45e3-94a2-434faa23a1c3.JPG)
+![Score](https://user-images.githubusercontent.com/89017449/134032701-9415ddf7-6f42-4b3a-b90e-c6fffe075d40.JPG)
 
 These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +13, and in 1023 episodes only (In comparison, according to Udacity's solution code for the project, their agent was benchmarked to be able to solve the project in fewer than 1800 episodes)
 
