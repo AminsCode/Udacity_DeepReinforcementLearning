@@ -100,4 +100,15 @@ Follow the instructions in `Navigation_DQN.ipynb` to get started with training y
 To watch a trained smart agent, use the checkpoint `checkpoint.pth` for loading the trained model. 
 
 
+- To import and initialize the Agent the following code parts in `Navigation_DQN.ipynb` shall run:
+![image](https://user-images.githubusercontent.com/89017449/134241420-104e05e0-f1f1-4869-bbba-e5e75ae6224e.png)
+
+
+- To train the model, the following code parts in `Navigation_DQN.ipynb` shall run:
+
+![image](https://user-images.githubusercontent.com/89017449/134241539-e99b8f94-0213-440f-9cdb-f1b87a22ad73.png)
+
+- To plot the score, the following code part in `Navigation_DQN.ipynb` shall run: 
+
+![image](https://user-images.githubusercontent.com/89017449/134240990-8bbf7cf9-db1a-4189-a35a-ea509ecd2c97.png)
 
