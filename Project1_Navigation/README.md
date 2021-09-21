@@ -39,8 +39,7 @@ To set up your python environment to run the code in this repository, follow the
 	```
   
 2. Follow the instructions in [this repository](https://github.com/openai/gym) to perform a minimal install of OpenAI gym.  
-- Next, install the **classic control** environment group by following the instructions [here](https://github.com/openai/gym#classic-control).
-- Then, install the **box2d** environment group by following the instructions [here](https://github.com/openai/gym#box2d).
+
 	
 3. Clone the repository (if you haven't already!), and navigate to the `python/` folder.  Then, install several dependencies.
 ```bash
@@ -56,7 +55,9 @@ python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
 5. Before running code in a notebook, change the kernel to match the `drlnd` environment by using the drop-down `Kernel` menu. 
 
-A full instruction can be found on the Udacity GitHub  
+A full instruction can be found at the [Udacity GitHub](https://github.com/udacity/deep-reinforcement-learning)  
+
+
 ### How to install the requirements
 
 - You first need to configure a Python 3.6 / PyTorch 0.4.0 environment with the needed requirements as described in the[ Udacity repository](https://github.com/udacity/deep-reinforcement-learning#dependencies)
