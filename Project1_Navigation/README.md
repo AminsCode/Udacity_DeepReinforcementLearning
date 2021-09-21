@@ -101,7 +101,7 @@ To watch a trained smart agent, use the checkpoint `checkpoint.pth` for loading 
 
 
 - To import and initialize the Agent the following code parts in `Navigation_DQN.ipynb` shall run:
-- 
+
 ![image](https://user-images.githubusercontent.com/89017449/134241420-104e05e0-f1f1-4869-bbba-e5e75ae6224e.png)
 
 
