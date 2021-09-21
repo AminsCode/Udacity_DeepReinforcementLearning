@@ -86,3 +86,9 @@ A full instruction can be found at [Udacity GitHub](https://github.com/udacity/d
 ```
 env = env = UnityEnvironment(file_name="Banana.app")
 ```
+
+### How to run the code and train the Agent
+
+
+
+
