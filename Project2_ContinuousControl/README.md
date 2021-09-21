@@ -71,7 +71,7 @@ For this project, we have built the Unity environment for you, and you must use 
 
 If you are interested in learning to build your own Unity environments after completing the project, you are encouraged to follow the instructions [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Getting-Started-with-Balance-Ball.md), which walk you through all of the details of building an environment from a Unity scene.
 
-### Environment
+## Environment
 
 The environment is simulated by Unity application _Reacher_ lying in the subdirectory _Reacher_Windows_x86_64_.
 We start the environment as follows:
