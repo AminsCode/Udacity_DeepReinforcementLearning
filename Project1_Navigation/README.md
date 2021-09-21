@@ -24,7 +24,11 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 
 ### How to install the requirements
 
-Download the environment from one of the links below. You need only select the environment that matches your operating system:
+You first need to configure a Python 3.6 / PyTorch 0.4.0 environment with the needed requirements as described in the[ Udacity repository](https://github.com/udacity/deep-reinforcement-learning#dependencies)
+
+Of course you have to clone this project and have it accessible in your Python environment
+
+Then download the environment from one of the links below. You need only select the environment that matches your operating system:
 
 Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
 
@@ -38,7 +42,10 @@ Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/
 
 (For AWS) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
 
-Place the file in this folder, unzip (or decompress) the file and then write the correct path in the argument for creating the environment under the notebook Navigation_solution.ipynb:
+
+Finally, unzip the environment archive in the 'project's environment' directory and eventually adjust thr path to the UnityEnvironment in the code.
+
+For example you can place the file in this folder, unzip (or decompress) the file and then write the correct path in the argument for creating the environment under the notebook Navigation_solution.ipynb:
 
 ```
 env = env = UnityEnvironment(file_name="Banana.app")
