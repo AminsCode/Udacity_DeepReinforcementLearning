@@ -87,8 +87,17 @@ A full instruction can be found at [Udacity GitHub](https://github.com/udacity/d
 env = env = UnityEnvironment(file_name="Banana.app")
 ```
 
-### How to run the code and train the Agent
+### Description
 
+- `dqn_agent.py`: code for the agent used in the environment
+- `model.py`: code containing the Q-Network used as the function approximator by the agent
+- `checkpoint.pth`: saved model weights for the original DQN model
+- `Navigation_DQN.ipynb`: notebook containing the solution
+
+### Instructions
+
+Follow the instructions in `Navigation_DQN.ipynb` to get started with training your own agent! 
+To watch a trained smart agent, use the checkpoint `checkpoint.pth` for loading the trained model. 
 
 
 
