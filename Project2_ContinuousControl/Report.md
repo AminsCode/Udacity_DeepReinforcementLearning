@@ -121,7 +121,7 @@ For more information the following used source would help: [Deep Deterministic P
 
 ### Ideas for improvement:
 
-- Using Prioritized Replay (paper) has generally shown to have been quite useful. It is expected that it'll lead to an improved performance here too.
+- Using [Prioritized Replay](https://arxiv.org/abs/1511.05952) has generally shown to have been quite useful. It is expected that it'll lead to an improved performance here too.
 
 - Other algorithms like TRPO, [PPO](https://openai.com/blog/openai-baselines-ppo/), [A3C](https://openai.com/blog/openai-baselines-ppo/), A2C that have been discussed in the course could potentially lead to better results as well.
 
