@@ -18,7 +18,8 @@ Pseudocode:
 
 ![image](https://user-images.githubusercontent.com/89017449/134413732-fbc1bd5d-1bf1-4a07-a124-dcc28ee474ac.png)
 
-Goal of DDPG Agent
+### Goal of DDPG Agent
+
 The environment for this project involves controlling a double-jointed arm, to reach target locations.
 A reward of +0.1 is provided for each step that the agent's hand is in the goal location. Thus, the goal of
 this agent is to maintain its position at the target location for as many time steps as possible.
@@ -27,7 +28,8 @@ The observation space (i.e., state space) has 33 dimensions corresponding to pos
 and angular velocities of the arm. The action space has 4 dimensions corresponding to torque applicable to
 two joints. Every entry in the action vector should be a number between -1 and 1.
 
-Target networks
+### Target networks
+
 The target network used for slow tracking of the learned network. We create a copy of the actor and critic networks:
 actor_target (say, with the parameter vector p') and critic_target (say, with the parameter vector w'). The weights of
 these target networks are updated by having them the following track:
@@ -41,7 +43,8 @@ We put the very small value for \tau (= 0.001). This means that the target value
 However, in practice we found this was greatly outweighed by the stability of learning."
 ("Continuous control with deep reinforcement learning", Lillicrap et al.,2015, arXiv:1509.02971)
 
-DDPG Neural Networks
+### DDPG Neural Networks
+
 The DDPG algorithm uses 4 neural networks: actor_target, actor_local, critic_target and critic_local:
 
 actor_local = Actor(state_size, action_size, random_seed).to(device)
