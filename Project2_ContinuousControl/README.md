@@ -119,40 +119,93 @@ You need at least the following three packages:
 
 ### Train the Agent
 
-   Run the notebook _Continuous_Control.ipynb_
+   Run the notebook _Continuous_Control_ddpg.ipynb_
    
    [1] import UnityEnvironment    
-   [2] env = UnityEnvironment(file_name='Reacher_Windows_x86_64/Reacher.exe')   # create environment      
+   [2] env = UnityEnvironment(file_name='/data/Reacher_Linux_NoVis/Reacher.x86_64')   # create environment      
    [3] Environments contain _brains_ which are responsible for deciding the actions of their associated agents. 
        We check for the first brain available.      
    [4] Examine the State and Action Spaces. We get the information frame as follows:   
        
-     Number of agents: 20   
-     Size of each action: 4    
-     There are 20 agents. Each observes a state with length: 33   
-     The state for the first agent looks like: [ 0.00000000e+00 -4.00000000e+00  0.00000000e+00  1.00000000e+00    
-        -0.00000000e+00 -0.00000000e+00 -4.37113883e-08  0.00000000e+00    
-         0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00    
-         0.00000000e+00  0.00000000e+00 -1.00000000e+01  0.00000000e+00    
-         1.00000000e+00 -0.00000000e+00 -0.00000000e+00 -4.37113883e-08    
-         0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00    
-         0.00000000e+00  0.00000000e+00  5.75471878e+00 -1.00000000e+00    
-         5.55726624e+00  0.00000000e+00  1.00000000e+00  0.00000000e+00   
-        -1.68164849e-01]    
+      Number of agents: 20
+      Size of each action: 4
+      There are 20 agents. Each observes a state with length: 33
+      The state for the first agent looks like: [  0.00000000e+00  -4.00000000e+00   0.00000000e+00   1.00000000e+00
+        -0.00000000e+00  -0.00000000e+00  -4.37113883e-08   0.00000000e+00
+         0.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00
+         0.00000000e+00   0.00000000e+00  -1.00000000e+01   0.00000000e+00
+         1.00000000e+00  -0.00000000e+00  -0.00000000e+00  -4.37113883e-08
+         0.00000000e+00   0.00000000e+00   0.00000000e+00   0.00000000e+00
+         0.00000000e+00   0.00000000e+00   5.75471878e+00  -1.00000000e+00
+         5.55726624e+00   0.00000000e+00   1.00000000e+00   0.00000000e+00
+        -1.68164849e-01] 
    
    [5]  Create _env_info_ and _agent_:
 
      env_info = env.reset(train_mode=True)[brain_name]      
-     agent = Agent(state_size=state_size, action_size=action_size, random_seed=15)     
+     env_info = env.reset(train_mode=True)[brain_name]
+     agent = Agent(state_size=state_size, action_size=action_size, random_seed=8)    
 
    [6]  Define and run the main function _ddpg_ :
    
-      scores = ddpg()
+      def ddpg(n_episodes=2000, max_t = 2000, window_size=100, print_interval=10, score_threshold=30.0):
+    
+    scores_deque = deque(maxlen=window_size)
+    scores_global = []
+        
+    time_start = time.time()
+    print("Training started!")
+    
+    for i_episode in range(1, n_episodes+1):
+        env_info = env.reset(train_mode=True)[brain_name]      # reset the environment    
+        states = env_info.vector_observations                  # get the current state (for each agent)
+        scores = np.zeros(num_agents)                          # initialize the score (for each agent)
+        agent.reset()
+        score_average = 0
 
-   The environment was solved in **195 episodes**, see _Continuous_Control.ipynb_ or _REPORT.ipynb_.     
+        for timestep in range(max_t):
+            actions = agent.act(states)
+            env_info = env.step(actions)[brain_name]           # send all actions to tne environment
+            next_states = env_info.vector_observations         # get next state (for each agent)
+            rewards = env_info.rewards                         # get reward (for each agent)
+            dones = env_info.local_done                        # see if episode finished
+            agent.step(states, actions, rewards, next_states, dones, timestep)
+            states = next_states                               # roll over states to next time step
+            scores += rewards                                  # update the score (for each agent)    
+            if np.any(dones):                                  # exit loop if episode finished
+                break
+        
+        score = np.mean(scores)
+        scores_deque.append(score)
+        score_average = np.mean(scores_deque)
+        scores_global.append(score)
+        
+        print('Episode: {}, Score: {:.2f}, Max: {:.2f}, Min: {:.2f} '\
+              .format(i_episode, score, np.max(scores), np.min(scores)))
+        
+        if i_episode % print_interval == 0 or (len(scores_deque) == 100 and np.mean(scores_deque) >= 30) :
+            torch.save(agent.actor_local.state_dict(), 'checkpoint_actor.pth')
+            torch.save(agent.critic_local.state_dict(), 'checkpoint_critic.pth')
+            s = (int)(time.time() - time_start) 
+            print('Average Score: {:.2f}, Time: {:02}:{:02}:{:02}'\
+                  .format(score_average, s//3600, s%3600//60, s%60))
+            print('----------------------------')
+            
+        if len(scores_deque) == window_size and np.mean(scores_deque) >= score_threshold:  
+            print('\nEnvironment solved in {} episodes!\tAverage Score: {:.2f}'.format(i_episode-window_size, score_average))
+            break
+            
+    return scores_global
+
       
    [7]  Print graph of scores over all episodes. 
-        After the episode 143, the score achived the value 30.  
+        
+      fig = plt.figure()
+      ax = fig.add_subplot(111)
+      plt.plot(np.arange(1, len(scores)+1), scores)
+      plt.ylabel('Score')
+      plt.xlabel('Episode #')
+      plt.show()
         
 ### Weights of the Trained Agent
   
