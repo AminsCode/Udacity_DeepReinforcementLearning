@@ -25,7 +25,7 @@ To solve the environment our agents must get an average score of +30 (over 100 c
 - This yields an average score for each episode (where the average is over all 20 agents).
 As an example, consider the plot below, where we have plotted the average score (over all 20 agents) obtained with each episode.
 
-As an example, consider the plot below, where we have plotted the average score (over all 20 agents) obtained with each episode.
+As an example, consider the plot below, where the average score (over all 20 agents) is obtained with each episode.
 
 ![image](https://user-images.githubusercontent.com/89017449/134247347-9bdc0b80-ff1e-4837-8313-b3cdda84f5ad.png)
 
