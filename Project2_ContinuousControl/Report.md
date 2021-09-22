@@ -123,7 +123,7 @@ For more information the following used source would help: [Deep Deterministic P
 
 - Using Prioritized Replay (paper) has generally shown to have been quite useful. It is expected that it'll lead to an improved performance here too.
 
-- Other algorithms like TRPO, PPO, A3C, A2C that have been discussed in the course could potentially lead to better results as well.
+- Other algorithms like TRPO, [PPO](https://openai.com/blog/openai-baselines-ppo/), [A3C](https://openai.com/blog/openai-baselines-ppo/), A2C that have been discussed in the course could potentially lead to better results as well.
 
 - The Q-prop algorithm, which combines both off-policy and on-policy learning, could be good one to try.
 
