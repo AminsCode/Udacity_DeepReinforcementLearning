@@ -14,7 +14,7 @@ In this project we use Algorithm DDPG (Deep Deterministic Policy Gradient). Deep
 
 DDPG trains a deterministic policy in an off-policy way. Because the policy is deterministic, if the agent were to explore on-policy, in the beginning it would probably not try a wide enough variety of actions to find useful learning signals. To make DDPG policies explore better, we add noise to their actions at training time. The authors of the original DDPG paper recommended time-correlated OU noise, but more recent results suggest that uncorrelated, mean-zero Gaussian noise works perfectly well. Since the latter is simpler, it is preferred. To facilitate getting higher-quality training data, you may reduce the scale of the noise over the course of training. (We do not do this in our implementation, and keep noise scale fixed throughout.)
 
-Pseudocode: 
+### Pseudocode: 
 
 ![image](https://user-images.githubusercontent.com/89017449/134413732-fbc1bd5d-1bf1-4a07-a124-dcc28ee474ac.png)
 
