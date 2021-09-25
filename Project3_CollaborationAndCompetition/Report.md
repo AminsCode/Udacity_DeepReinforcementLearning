@@ -26,25 +26,7 @@ agent (of type ddpg_agent):
 and experiance is transferred to function learn() of the class ddpg_agent. There, the actor and the critic are handled by different ways.
 
 
-## Approach
-Here are the high-level steps taken in building an agent that solves this environment.
-
-1. Establish performance baseline using a random action policy.
-1. Select an appropriate algorithm and begin implementing it.
-1. Run experiments, make revisions, and retrain the agent until the performance threshold is reached.
-
-WARNING: I ultimately reached a good solution; however, the results were not consistent. My "best" results were only reproducible if I reran the model numerous times (>10). If you just run the model once (or even 3-5 times), it might not converge. And, during the initial implementation, I ran the model at least 30 times while searching for a reliable set of hyperparameters. If you want to experiment with different approaches, I strongly recommend implementing a more systematic approach such as grid search (which I did not do, but wish I had).
-
-##### &nbsp;
-
-### 1. Establish Baseline
-Before building agents that learn, I started by testing ones that select actions (uniformly) at random at each time step.
-
-Running the random agents a few times resulted in scores from 0 to 0.02. Obviously, if these agents need to achieve an average score of 0.5 over 100 consecutive episodes, then choosing actions at random won't work. However, when you watch the agents acting randomly, it becomes clear that these types of sporadic actions can be useful early in the training process. That is, they can help the agents explore the action space to find some signal of good vs. bad actions. This insight will come into play later when we implement the Ornstein-Uhlenbeck process and epsilon noise decay.
-
-##### &nbsp;
-
-### 2. Implement Learning Algorithm
+### Implement Learning Algorithm
 To get started, there are a few high-level architecture decisions we need to make. First, we need to determine which types of algorithms are most suitable for the Tennis environment.
 
 #### Policy-based vs Value-based Methods
@@ -59,7 +41,6 @@ Here are some advantages of policy-based methods:
 - **Stochastic policies** &mdash; Both value-based and policy-based methods can learn deterministic policies. However, policy-based methods can also learn true stochastic policies.
 - **Simplicity** &mdash; Policy-based methods directly learn the optimal policy, without having to maintain a separate value function estimate. With value-based methods, the agent uses its experience with the environment to maintain an estimate of the optimal action-value function, from which an optimal policy is derived. This intermediate step requires the storage of lots of additional data since you need to account for all possible action values. Even if you discretize the action space, the number of possible actions can get quite large. And, using DQN to determine the action that maximizes the action-value function within a continuous or high-dimensional space requires a complex optimization process at every timestep.
 
-##### &nbsp;
 
 #### Multi-Agent Deep Deterministic Policy Gradient (MADDPG)
 The original DDPG algorithm from which I extended to create the MADDPG version, is outlined in [this paper](https://arxiv.org/pdf/1509.02971.pdf), _Continuous Control with Deep Reinforcement Learning_, by researchers at Google Deepmind. In this paper, the authors present "a model-free, off-policy actor-critic algorithm using deep function approximators that can learn policies in high-dimensional, continuous action spaces." They highlight that DDPG can be viewed as an extension of Deep Q-learning to continuous tasks.
@@ -71,8 +52,6 @@ Lastly, I further experimented with components of the DDPG algorithm based on ot
 <img src="assets/multi-agent-actor-critic.png" width="40%" align="top-left" alt="" title="Multi-Agent Actor-Critic" />
 
 > _Figure 1: Multi-agent decentralized actor with centralized critic ([Lowe and Wu et al](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf))._
-
-##### &nbsp;
 
 #### Actor-Critic Method
 Actor-critic methods leverage the strengths of both policy-based and value-based methods.
@@ -96,8 +75,6 @@ self.critic_local = Critic(state_size, action_size, random_seed).to(device)
 self.critic_target = Critic(state_size, action_size, random_seed).to(device)
 self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
 ```
-
-##### &nbsp;
 
 #### Exploration vs Exploitation
 One challenge is choosing which action to take while the agent is still learning the optimal policy. Should the agent choose an action based on the rewards observed thus far? Or, should the agent try a new action in hopes of earning a higher reward? This is known as the **exploration vs. exploitation dilemma**.
@@ -135,8 +112,6 @@ EPS_FINAL = 0           # final value for epsilon after decay
 
 **IMPORTANT NOTE:** Notice that the EPS_START parameter is set at 5.0. For dozens of experiments, I had this parameter set to 1.0, as I had in previous projects. But, I had a difficult time getting the model to converge, and if it did, it converged very slowly (>1500 episodes). After much trial and error, I realized that the agents had some difficulty discovering signal early in the process (i.e., most episode scores equaled zero). By boosting the noise output from the Ornstein-Uhlenbeck (OU) process, it encouraged aggressive exploration of the action space and therefore improved the chances that signal would be detected (i.e., making contact with the ball). This extra signal seemed to improve learning later in training once the noise decayed to zero.
 
-##### &nbsp;
-
 #### Learning Interval
 In the first few versions of my implementation, the agent only performed a single learning iteration per episode. Although the best model had this setting, this seemed to be a stroke of luck. In general, I found that performing multiple learning passes per episode yielded faster convergence and higher scores. This did make training slower, but it was a worthwhile trade-off. In the end, I implemented an interval in which the learning step is performed every episode. As part of each learning step, the algorithm then samples experiences from the buffer and runs the `Agent.learn()` method 10 times.
 
@@ -146,8 +121,6 @@ LEARN_NUM = 5           # number of passes per learning step
 ```
 
 You can find the learning interval implemented [here](https://github.com/tommytracey/DeepRL-P3-Collaboration-Competition/blob/master/maddpg_agent.py#L67) in the `Agent.step()` method in `maddpg_agent.py` of the source code.
-
-##### &nbsp;
 
 #### Gradient Clipping
 In early versions of my implementation, I had trouble getting my agent to learn. Or, rather, it would start to learn but then become very unstable and either plateau or collapse.
@@ -173,8 +146,6 @@ torch.nn.utils.clip_grad_norm_(self.critic_local.parameters(), 1)
 self.critic_optimizer.step()
 ```
 
-##### &nbsp;
-
 #### Experience Replay
 Experience replay allows the RL agent to learn from past experience.
 
@@ -185,8 +156,6 @@ The replay buffer contains a collection of experience tuples with the state, act
 Also, experience replay improves learning through repetition. By doing multiple passes over the data, our agents have multiple opportunities to learn from a single experience tuple. This is particularly useful for state-action pairs that occur infrequently within the environment.
 
 The implementation of the replay buffer can be found [here](https://github.com/tommytracey/DeepRL-P3-Collaboration-Competition/blob/master/maddpg_agent.py#L196) in the `maddpg_agent.py` file of the source code.
-
-##### &nbsp;
 
 ## Results
 Once all of the above components were in place, the agents were able to solve the Tennis environment. Again, the performance goal is an average reward of at least +0.5 over 100 episodes, taking the best score from either agent for a given episode.
