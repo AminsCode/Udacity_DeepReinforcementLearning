@@ -43,3 +43,70 @@ Then, place the file in the p3_collab-compet/ folder in the DRLND GitHub reposit
 
 ### Step 3: Explore the Environment
 After you have followed the instructions above, open Tennis.ipynb (located in the p3_collab-compet/ folder in the DRLND GitHub repository) and follow the instructions to learn how to use the Python API to control the agent.
+
+
+### Prepare environment on the local machine
+
+You need at least the following three packages:
+
+1. **deep-reinforcement-learning  (DRLND)**        
+   The instructions to set up the DRLND repository can be found [here](https://github.com/udacity/deep-reinforcement-learning#dependencies). This repository contains material related to Udacity's [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893) program.
+
+2. **ml-agents  (ML-Agents Toolkit)**
+   To configure the ML-Agents Toolkit for Windows you need to complete the following steps:
+    
+    2.1  Creating a new Conda environment:
+    
+       conda create -n ml-agents python=3.6
+       
+    2.2 Activating ml-agents by the following command:
+    
+       activate ml-agents
+       
+    2.3 Latest versions of TensorFlow won't work, so you will need to make sure that you install version 1.7.1:
+    
+       pip install tensorflow==1.7.1
+       
+    For details on installing the ML-Agents Toolkit, see the instructions [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md).     
+    
+3. **Unity environment _Reacher_**
+
+    For this project, we not need to install Unity because the environment already built. For 20 agents, the environment     
+    can be downloaded as follows:
+
+   Windows (64-bit), [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86_64.zip)    
+   Windows (32-bit), [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86.zip)     
+
+   Download this environment zip into  **p2_continuous-control/** folder, and unzip the file.
+
+### Train the Agent
+
+   Run the notebook _Continuous_Control_ddpg.ipynb_
+   
+   [1] import UnityEnvironment    
+   [2] env = UnityEnvironment(file_name='/data/Reacher_Linux_NoVis/Reacher.x86_64')   # create environment      
+   [3] Environments contain _brains_ which are responsible for deciding the actions of their associated agents. 
+       We check for the first brain available.      
+   [4] Examine the State and Action Spaces. We get the information frame as follows:   
+       
+      
+   
+   [5]  Create _env_info_ and _agent_:
+
+        
+
+   [6]  Define and run the main function _ddpg_ :
+   
+      
+
+      
+   [7]  Print graph of scores over all episodes. 
+        
+      
+        
+### Weights of the Trained Agent
+  
+  The **weights** of the trained agent are saved into the files _checkpoint_actor.pth_  and  _checkpoint_critic.pth_.
+
+
+
