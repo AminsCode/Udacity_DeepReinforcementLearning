@@ -50,7 +50,7 @@ After you have followed the instructions above, open Tennis.ipynb (located in th
 The solution contanins the following files:
 
 - `Tennis_maddpg.ipynb`: notebook containing the solution
-- `main.py`: main file that sets up environments and performs training loop
+- `main.py`: main file that sets up environments and performs training loop (in case you don't run the code through `Tennis_maddpg.ipynb`)
 - `model.py`: code containing the actor and critic models
 - `maddpg_agent.py`: code containing the MADDPG Agent model
 - `checkpoint_actor_0.pth`: saved model weights for the Actor 0
