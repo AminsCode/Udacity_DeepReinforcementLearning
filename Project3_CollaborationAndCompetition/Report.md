@@ -30,9 +30,6 @@ For the DDPG foundation, [this single-agent DDPG](https://github.com/udacity/dee
 
 Lastly, I further experimented with components of the DDPG algorithm based on other concepts covered in Udacity's classroom and lessons. My implementation of this algorithm (including various customizations) are discussed below.
 
-<img src="assets/multi-agent-actor-critic.png" width="40%" align="top-left" alt="" title="Multi-Agent Actor-Critic" />
-
-> _Figure 1: Multi-agent decentralized actor with centralized critic ([Lowe and Wu et al](https://papers.nips.cc/paper/7217-multi-agent-actor-critic-for-mixed-cooperative-competitive-environments.pdf))._
 
 #### Actor-Critic Method
 Actor-critic methods leverage the strengths of both policy-based and value-based methods.
@@ -321,6 +318,8 @@ The graph below shows the final training results. The agents were able to solve 
 
 ### Future ideas:
 
+- Address stability issues to produce more consistent results: The results are only reproducible if you run the model numerous times. If you just run it once (or even 3-5 times) the model might not converge. More research is needed to find a more stable algorithm, or to make changes to the current DDPG algorithm.
+- Add prioritized experience replay — Rather than selecting experience tuples randomly, prioritized replay selects experiences based on a priority value that is correlated with the magnitude of error. This can improve learning by increasing the probability that rare or important experience vectors are sampled.
 - Check different values for hyperparameters such as LEARNING_PERIOD, and neural network parameters fc1_units, fc2_units, etc.
 - How does the addition of new nonlinear layers in the used neural networks affect the robustness of the algorithm.
 - It would be interesting to train agents using MAPPO and compare them with MADDPG.
