@@ -157,24 +157,186 @@ Also, experience replay improves learning through repetition. By doing multiple 
 
 The implementation of the replay buffer can be found [here](https://github.com/tommytracey/DeepRL-P3-Collaboration-Competition/blob/master/maddpg_agent.py#L196) in the `maddpg_agent.py` file of the source code.
 
+### Hyperparameters
+
+The used Hyperparameters in 'maddpg_agent.py' are listed below:
+
+     BUFFER_SIZE = int(1e6)  # replay buffer size
+     BATCH_SIZE = 128        # minibatch size
+     LR_ACTOR = 1e-3         # learning rate of the actor
+     LR_CRITIC = 1e-3        # learning rate of the critic
+     WEIGHT_DECAY = 0        # L2 weight decay
+     LEARN_EVERY = 1         # learning timestep interval
+     LEARN_NUM = 5           # number of learning passes
+     GAMMA = 0.99            # discount factor
+     TAU = 8e-3              # for soft update of target parameters
+     OU_SIGMA = 0.2          # Ornstein-Uhlenbeck noise parameter, volatility
+     OU_THETA = 0.15          # Ornstein-Uhlenbeck noise parameter, speed of mean reversion
+     EPS_START = 5.0         # initial value for epsilon in noise decay process in Agent.act()
+     EPS_EP_END = 300        # episode to end the noise decay process
+     EPS_FINAL = 0           # final value for epsilon after decay
+
+
+
 ## Results
 Once all of the above components were in place, the agents were able to solve the Tennis environment. Again, the performance goal is an average reward of at least +0.5 over 100 episodes, taking the best score from either agent for a given episode.
 
-[Here](https://youtu.be/jOWWzygOi1A) is a video showing the trained agents playing a few points.
+The graph below shows the final training results. The agents were able to solve the environment in 1404 episodes, with a top score of 3.3. The complete set of results and steps is listed below:
 
-<a href="https://youtu.be/jOWWzygOi1A"><img src="assets/video-thumbnail.png" width="30%" align="top-left" alt="" title="Tennis Agent Video" /></a>
+     Episodes 0000-0010	Max Score: 0.100	Average Score: 0.020
+     Episodes 0010-0020	Max Score: 0.000	Average Score: 0.010
+     Episodes 0020-0030	Max Score: 0.000	Average Score: 0.007
+     Episodes 0030-0040	Max Score: 0.100	Average Score: 0.008
+     Episodes 0040-0050	Max Score: 0.000	Average Score: 0.006
+     Episodes 0050-0060	Max Score: 0.100	Average Score: 0.008
+     Episodes 0060-0070	Max Score: 0.100	Average Score: 0.010
+     Episodes 0070-0080	Max Score: 0.000	Average Score: 0.009
+     Episodes 0080-0090	Max Score: 0.100	Average Score: 0.010
+     Episodes 0090-0100	Max Score: 0.100	Average Score: 0.010
+     Episodes 0100-0110	Max Score: 0.100	Average Score: 0.010
+     Episodes 0110-0120	Max Score: 0.300	Average Score: 0.014
+     Episodes 0120-0130	Max Score: 0.100	Average Score: 0.016
+     Episodes 0130-0140	Max Score: 0.200	Average Score: 0.020
+     Episodes 0140-0150	Max Score: 0.100	Average Score: 0.022
+     Episodes 0150-0160	Max Score: 0.200	Average Score: 0.024
+     Episodes 0160-0170	Max Score: 0.100	Average Score: 0.023
+     Episodes 0170-0180	Max Score: 0.100	Average Score: 0.025
+     Episodes 0180-0190	Max Score: 0.100	Average Score: 0.024
+     Episodes 0190-0200	Max Score: 0.100	Average Score: 0.024
+     Episodes 0200-0210	Max Score: 0.100	Average Score: 0.023
+     Episodes 0210-0220	Max Score: 0.100	Average Score: 0.021
+     Episodes 0220-0230	Max Score: 0.500	Average Score: 0.027
+     Episodes 0230-0240	Max Score: 0.300	Average Score: 0.026
+     Episodes 0240-0250	Max Score: 0.100	Average Score: 0.025
+     Episodes 0250-0260	Max Score: 0.200	Average Score: 0.027
+     Episodes 0260-0270	Max Score: 0.200	Average Score: 0.034
+     Episodes 0270-0280	Max Score: 0.200	Average Score: 0.037
+     Episodes 0280-0290	Max Score: 0.200	Average Score: 0.042
+     Episodes 0290-0300	Max Score: 0.200	Average Score: 0.046
+     Episodes 0300-0310	Max Score: 0.100	Average Score: 0.049
+     Episodes 0310-0320	Max Score: 0.000	Average Score: 0.047
+     Episodes 0320-0330	Max Score: 0.300	Average Score: 0.043
+     Episodes 0330-0340	Max Score: 0.100	Average Score: 0.045
+     Episodes 0340-0350	Max Score: 0.100	Average Score: 0.048
+     Episodes 0350-0360	Max Score: 0.200	Average Score: 0.053
+     Episodes 0360-0370	Max Score: 0.200	Average Score: 0.051
+     Episodes 0370-0380	Max Score: 0.100	Average Score: 0.051
+     Episodes 0380-0390	Max Score: 0.200	Average Score: 0.055
+     Episodes 0390-0400	Max Score: 0.200	Average Score: 0.060
+     Episodes 0400-0410	Max Score: 0.100	Average Score: 0.060
+     Episodes 0410-0420	Max Score: 0.200	Average Score: 0.070
+     Episodes 0420-0430	Max Score: 0.100	Average Score: 0.071
+     Episodes 0430-0440	Max Score: 0.100	Average Score: 0.071
+     Episodes 0440-0450	Max Score: 0.200	Average Score: 0.073
+     Episodes 0450-0460	Max Score: 0.100	Average Score: 0.066
+     Episodes 0460-0470	Max Score: 0.200	Average Score: 0.065
+     Episodes 0470-0480	Max Score: 0.300	Average Score: 0.072
+     Episodes 0480-0490	Max Score: 0.200	Average Score: 0.070
+     Episodes 0490-0500	Max Score: 0.100	Average Score: 0.066
+     Episodes 0500-0510	Max Score: 0.200	Average Score: 0.071
+     Episodes 0510-0520	Max Score: 0.200	Average Score: 0.068
+     Episodes 0520-0530	Max Score: 0.200	Average Score: 0.071
+     Episodes 0530-0540	Max Score: 0.200	Average Score: 0.072
+     Episodes 0540-0550	Max Score: 0.100	Average Score: 0.071
+     Episodes 0550-0560	Max Score: 0.200	Average Score: 0.073
+     Episodes 0560-0570	Max Score: 0.300	Average Score: 0.081
+     Episodes 0570-0580	Max Score: 0.200	Average Score: 0.077
+     Episodes 0580-0590	Max Score: 0.300	Average Score: 0.082
+     Episodes 0590-0600	Max Score: 0.200	Average Score: 0.088
+     Episodes 0600-0610	Max Score: 0.200	Average Score: 0.088
+     Episodes 0610-0620	Max Score: 0.600	Average Score: 0.097
+     Episodes 0620-0630	Max Score: 0.100	Average Score: 0.097
+     Episodes 0630-0640	Max Score: 0.100	Average Score: 0.097
+     Episodes 0640-0650	Max Score: 0.200	Average Score: 0.103
+     Episodes 0650-0660	Max Score: 0.300	Average Score: 0.108
+     Episodes 0660-0670	Max Score: 0.200	Average Score: 0.106
+     Episodes 0670-0680	Max Score: 0.100	Average Score: 0.108
+     Episodes 0680-0690	Max Score: 0.200	Average Score: 0.108
+     Episodes 0690-0700	Max Score: 0.200	Average Score: 0.107
+     Episodes 0700-0710	Max Score: 0.100	Average Score: 0.105
+     Episodes 0710-0720	Max Score: 0.300	Average Score: 0.103
+     Episodes 0720-0730	Max Score: 0.200	Average Score: 0.106
+     Episodes 0730-0740	Max Score: 0.300	Average Score: 0.110
+     Episodes 0740-0750	Max Score: 0.100	Average Score: 0.107
+     Episodes 0750-0760	Max Score: 0.200	Average Score: 0.104
+     Episodes 0760-0770	Max Score: 0.200	Average Score: 0.099
+     Episodes 0770-0780	Max Score: 0.200	Average Score: 0.096
+     Episodes 0780-0790	Max Score: 0.100	Average Score: 0.088
+     Episodes 0790-0800	Max Score: 0.300	Average Score: 0.087
+     Episodes 0800-0810	Max Score: 0.400	Average Score: 0.093
+     Episodes 0810-0820	Max Score: 0.400	Average Score: 0.101
+     Episodes 0820-0830	Max Score: 0.100	Average Score: 0.095
+     Episodes 0830-0840	Max Score: 0.500	Average Score: 0.107
+     Episodes 0840-0850	Max Score: 0.400	Average Score: 0.112
+     Episodes 0850-0860	Max Score: 0.300	Average Score: 0.117
+     Episodes 0860-0870	Max Score: 0.400	Average Score: 0.127
+     Episodes 0870-0880	Max Score: 0.900	Average Score: 0.141
+     Episodes 0880-0890	Max Score: 0.600	Average Score: 0.153
+     Episodes 0890-0900	Max Score: 0.400	Average Score: 0.160
+     Episodes 0900-0910	Max Score: 0.300	Average Score: 0.157
+     Episodes 0910-0920	Max Score: 0.900	Average Score: 0.156
+     Episodes 0920-0930	Max Score: 1.300	Average Score: 0.179
+     Episodes 0930-0940	Max Score: 0.600	Average Score: 0.178
+     Episodes 0940-0950	Max Score: 0.700	Average Score: 0.187
+     Episodes 0950-0960	Max Score: 0.400	Average Score: 0.184
+     Episodes 0960-0970	Max Score: 0.200	Average Score: 0.179
+     Episodes 0970-0980	Max Score: 0.700	Average Score: 0.182
+     Episodes 0980-0990	Max Score: 0.200	Average Score: 0.177
+     Episodes 0990-1000	Max Score: 0.500	Average Score: 0.184
+     Episodes 1000-1010	Max Score: 0.700	Average Score: 0.205
+     Episodes 1010-1020	Max Score: 0.500	Average Score: 0.214
+     Episodes 1020-1030	Max Score: 1.500	Average Score: 0.216
+     Episodes 1030-1040	Max Score: 1.500	Average Score: 0.238
+     Episodes 1040-1050	Max Score: 0.800	Average Score: 0.241
+     Episodes 1050-1060	Max Score: 0.900	Average Score: 0.265
+     Episodes 1060-1070	Max Score: 0.700	Average Score: 0.274
+     Episodes 1070-1080	Max Score: 0.700	Average Score: 0.274
+     Episodes 1080-1090	Max Score: 0.500	Average Score: 0.283
+     Episodes 1090-1100	Max Score: 2.100	Average Score: 0.295
+     Episodes 1100-1110	Max Score: 1.200	Average Score: 0.305
+     Episodes 1110-1120	Max Score: 0.500	Average Score: 0.300
+     Episodes 1120-1130	Max Score: 1.300	Average Score: 0.310
+     Episodes 1130-1140	Max Score: 2.300	Average Score: 0.314
+     Episodes 1140-1150	Max Score: 0.200	Average Score: 0.299
+     Episodes 1150-1160	Max Score: 2.000	Average Score: 0.312
+     Episodes 1160-1170	Max Score: 0.800	Average Score: 0.321
+     Episodes 1170-1180	Max Score: 0.600	Average Score: 0.328
+     Episodes 1180-1190	Max Score: 0.500	Average Score: 0.330
+     Episodes 1190-1200	Max Score: 0.500	Average Score: 0.315
+     Episodes 1200-1210	Max Score: 0.700	Average Score: 0.299
+     Episodes 1210-1220	Max Score: 0.800	Average Score: 0.301
+     Episodes 1220-1230	Max Score: 1.500	Average Score: 0.311
+     Episodes 1230-1240	Max Score: 0.700	Average Score: 0.303
+     Episodes 1240-1250	Max Score: 1.200	Average Score: 0.325
+     Episodes 1250-1260	Max Score: 0.700	Average Score: 0.307
+     Episodes 1260-1270	Max Score: 0.800	Average Score: 0.309
+     Episodes 1270-1280	Max Score: 0.500	Average Score: 0.297
+     Episodes 1280-1290	Max Score: 0.900	Average Score: 0.309
+     Episodes 1290-1300	Max Score: 1.000	Average Score: 0.327
+     Episodes 1300-1310	Max Score: 0.900	Average Score: 0.329
+     Episodes 1310-1320	Max Score: 0.900	Average Score: 0.321
+     Episodes 1320-1330	Max Score: 1.800	Average Score: 0.353
+     Episodes 1330-1340	Max Score: 1.300	Average Score: 0.346
+     Episodes 1340-1350	Max Score: 1.500	Average Score: 0.344
+     Episodes 1350-1360	Max Score: 0.900	Average Score: 0.342
+     Episodes 1360-1370	Max Score: 0.900	Average Score: 0.345
+     Episodes 1370-1380	Max Score: 0.900	Average Score: 0.357
+     Episodes 1380-1390	Max Score: 0.500	Average Score: 0.338
+     Episodes 1390-1400	Max Score: 0.200	Average Score: 0.311
+     Episodes 1400-1410	Max Score: 0.500	Average Score: 0.303
+     Episodes 1410-1420	Max Score: 1.100	Average Score: 0.330
+     Episodes 1420-1430	Max Score: 1.300	Average Score: 0.286
+     Episodes 1430-1440	Max Score: 0.500	Average Score: 0.275
+     Episodes 1440-1450	Max Score: 1.700	Average Score: 0.301
+     Episodes 1450-1460	Max Score: 0.900	Average Score: 0.307
+     Episodes 1460-1470	Max Score: 1.100	Average Score: 0.317
+     Episodes 1470-1480	Max Score: 1.300	Average Score: 0.341
+     Episodes 1480-1490	Max Score: 3.300	Average Score: 0.406
+     Episodes 1490-1500	Max Score: 2.500	Average Score: 0.481
+      ------Environment solved in 1404 episodes!------             
+      ------Average Score: 0.501 over past 100 episodes------ 
 
-The graph below shows the final training results. The best-performing agents were able to solve the environment in 607 episodes, with a top score of 5.2 and a top moving average of 0.927. The complete set of results and steps can be found in [this notebook](Tennis.ipynb).
-
-<img src="assets/best-model-graph.png" width="70%" align="top-left" alt="" title="Results Graph" />
-
-<img src="assets/training-output.png" width="70%" align="top-left" alt="" title="Training Output" />
-
-
-### Hyperparameters
-
-
-### Results
+![image](https://user-images.githubusercontent.com/89017449/134804446-b715bedc-4273-4446-ba73-ca42cf781b08.png)
 
 
 
