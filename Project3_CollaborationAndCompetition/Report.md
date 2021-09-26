@@ -159,7 +159,7 @@ Once all of the above components were in place, the agents were able to solve th
 
 The graph below shows the final training results. The agents were able to solve the environment in 1300 episodes, with a top score of 4.00. The complete set of results and steps is listed below:
 
-          Episodes 0000-0010	Max Score: 0.000	Average Score: 0.000
+     Episodes 0000-0010	Max Score: 0.000	Average Score: 0.000
      Episodes 0010-0020	Max Score: 0.100	Average Score: 0.005
      Episodes 0020-0030	Max Score: 0.100	Average Score: 0.007
      Episodes 0030-0040	Max Score: 0.000	Average Score: 0.005
