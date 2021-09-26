@@ -50,13 +50,13 @@ After you have followed the instructions above, open Tennis.ipynb (located in th
 The solution contanins the following files:
 
 - `Tennis_maddpg.ipynb`: notebook containing the solution
-- `main.py`: 
-- `model.py`: code containing the Q-Network used as the function approximator by the agent
-- `maddpg_agent.py`: saved model weights for the 
-- `checkpoint_actor_0.pth`: saved model weights for the 
-- `checkpoint_actor_1.pth`: saved model weights for the 
-- `checkpoint_critic_0.pth`: saved model weights for the 
-- `checkpoint_critic_1.pth`: saved model weights for the 
+- `main.py`: main file that sets up environments and performs training loop
+- `model.py`: code containing the actor and critic models
+- `maddpg_agent.py`: code containing the MADDPG Agent model
+- `checkpoint_actor_0.pth`: saved model weights for the Actor 0
+- `checkpoint_actor_1.pth`: saved model weights for Actor 1 
+- `checkpoint_critic_0.pth`: saved model weights for Critic 0 
+- `checkpoint_critic_1.pth`: saved model weights for Critic 1
 
 Follow the instructions in `Tennis_maddpg.ipynb` to get started with training your own agent!
 
