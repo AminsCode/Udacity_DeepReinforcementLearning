@@ -5,8 +5,7 @@ In this project, we use the DDPG algorithm (Deep Deterministic Policy Gradient) 
 a wrapper for DDPG. MADDPG stands for Multi-Agent DDPG. DDPG is an algorithm which concurrently learns
 a Q-function and a policy. It uses off-policy data and the Bellman equation to learn the Q-function, and uses
 the Q-function to learn the policy. This dual mechanism is the actor-critic method. The DDPG algorithm uses
-two additional mechanisms: Replay Buffer and Soft Updates.
-
+two additional mechanisms: Replay Buffer and Soft Updates. The reasons of choosing this algorithm to solve the given problem is described below.
 
 ### Implement Learning Algorithm
 To get started, there are a few high-level architecture decisions we need to make. First, we need to determine which types of algorithms are most suitable for the Tennis environment.
