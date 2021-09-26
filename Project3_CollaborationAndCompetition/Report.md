@@ -157,7 +157,7 @@ The used Hyperparameters in `maddpg_agent.py` are listed below:
 ## Results
 Once all of the above components were in place, the agents were able to solve the Tennis environment. Again, the performance goal is an average reward of at least +0.5 over 100 episodes, taking the best score from either agent for a given episode.
 
-The graph below shows the final training results. The agents were able to solve the environment in 1404 episodes, with a top score of 3.3. The complete set of results and steps is listed below:
+The graph below shows the final training results. The agents were able to solve the environment in 1300 episodes, with a top score of 4.00. The complete set of results and steps is listed below:
 
           Episodes 0000-0010	Max Score: 0.000	Average Score: 0.000
      Episodes 0010-0020	Max Score: 0.100	Average Score: 0.005
