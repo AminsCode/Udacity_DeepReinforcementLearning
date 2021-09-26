@@ -60,7 +60,11 @@ The solution contanins the following files:
 
 Follow the instructions in `Tennis_maddpg.ipynb` to get started with training your own agent!
 
-## How to start the environment
+## How to run the code
+
+You can either run the `main.py` to run the whole steps of the solution at once or use the `Tennis_maddpg.ipynb` to go through each step. All steps of the solution are described below:
+
+#### How to start the environment
 
 #### Install Python 
       !pip -q install ./python
