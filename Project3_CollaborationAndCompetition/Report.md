@@ -16,7 +16,7 @@ of any one agent.
 In MADDPG, each agent’s critic is trained using the observations and actions from both agents , whereas
 each agent’s actor is trained using just its own observations.
 
-In the finction step() of the class madppg_agent, we collect all current info for both agents into the common variable
+In the function step() of the class madppg_agent, we collect all current info for both agents into the common variable
 memory of the type ReplayBuffer. Then we get the random sample from memory into the variable experiance.
 This experiance together with the current number of agent (0 or 1) go to the function learn(). We get the corresponding
 agent (of type ddpg_agent):
