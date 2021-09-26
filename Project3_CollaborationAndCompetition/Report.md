@@ -342,6 +342,6 @@ The graph below shows the final training results. The agents were able to solve 
 
 ### Future ideas
 
-Check different values for hyperparameters such as LEARNING_PERIOD, and neural network parameters fc1_units, fc2_units, etc.
-How does the addition of new nonlinear layers in the used neural networks affect the robustness of the algorithm.
-It would be interesting to train agents using MAPPO and compare them with MADDPG.
+- Check different values for hyperparameters such as LEARNING_PERIOD, and neural network parameters fc1_units, fc2_units, etc.
+- How does the addition of new nonlinear layers in the used neural networks affect the robustness of the algorithm.
+- It would be interesting to train agents using MAPPO and compare them with MADDPG.
