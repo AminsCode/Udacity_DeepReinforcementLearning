@@ -42,17 +42,6 @@ You can find the actor-critic logic implemented as part of the `Agent()` class i
 
 Note: As we did with Double Q-Learning in the last project, we're again leveraging local and target networks to improve stability. This is where one set of parameters `w` is used to select the best action, and another set of parameters `w'` is used to evaluate that action. In this project, local and target networks are implemented separately for both the actor and the critic.
 
-```python
-# Actor Network (w/ Target Network)
-self.actor_local = Actor(state_size, action_size, random_seed).to(device)
-self.actor_target = Actor(state_size, action_size, random_seed).to(device)
-self.actor_optimizer = optim.Adam(self.actor_local.parameters(), lr=LR_ACTOR)
-
-# Critic Network (w/ Target Network)
-self.critic_local = Critic(state_size, action_size, random_seed).to(device)
-self.critic_target = Critic(state_size, action_size, random_seed).to(device)
-self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
-```
 
 #### Exploration vs Exploitation
 One challenge is choosing which action to take while the agent is still learning the optimal policy. Should the agent choose an action based on the rewards observed thus far? Or, should the agent try a new action in hopes of earning a higher reward? This is known as the **exploration vs. exploitation dilemma**.
@@ -132,6 +121,22 @@ The replay buffer contains a collection of experience tuples with the state, act
 Also, experience replay improves learning through repetition. By doing multiple passes over the data, our agents have multiple opportunities to learn from a single experience tuple. This is particularly useful for state-action pairs that occur infrequently within the environment.
 
 The implementation of the replay buffer can be found in the `maddpg_agent.py` file of the source code.
+
+### Model architecture of actor and critic networks
+
+Both actor and critic networks include 2 hidden layers, containing 256 nodes in the first hidden layer and 128 nodes in the second layer.
+
+```python
+# Actor Network (w/ Target Network)
+self.actor_local = Actor(state_size, action_size, random_seed).to(device)
+self.actor_target = Actor(state_size, action_size, random_seed).to(device)
+self.actor_optimizer = optim.Adam(self.actor_local.parameters(), lr=LR_ACTOR)
+
+# Critic Network (w/ Target Network)
+self.critic_local = Critic(state_size, action_size, random_seed).to(device)
+self.critic_target = Critic(state_size, action_size, random_seed).to(device)
+self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
+```
 
 ### Hyperparameters
 
