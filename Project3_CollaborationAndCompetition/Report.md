@@ -135,9 +135,9 @@ The implementation of the replay buffer can be found in the `maddpg_agent.py` fi
 
 ### Model architecture of actor and critic networks
 
-Both actor and critic networks include 2 hidden layers, containing 256 nodes in the first hidden layer and 128 nodes in the second layer.
+Both actor and critic networks include 2 hidden layers, containing 256 nodes in the first hidden layer and 128 nodes in the second layer. For both networks a Rectified Linear Units (ReLU) has been used as activation function.
 
-
+The implementation of the these networks can be found in the `model.py` file of the source code.
 
 ### Hyperparameters
 
