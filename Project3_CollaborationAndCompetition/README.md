@@ -62,10 +62,11 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
 
 ## How to start the environment
 
-      ## Python install 
+#### installing Python 
       !pip -q install ./python
       
-      ## import the needed libraries
+#### importing the needed libraries
+
       from maddpg_agent import Agent
       from collections import deque
       import matplotlib.pyplot as plt
@@ -76,14 +77,16 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
       from unityagents import UnityEnvironment
       %matplotlib inline
       
-      ##start the environment
+#### starting the environment
+
       env = UnityEnvironment(file_name="/data/Tennis_Linux_NoVis/Tennis")
       
-      # get the default brain
+#### getting the default brain
+
       brain_name = env.brain_names[0]
       brain = env.brains[brain_name]
       
-#### Examine the State and Action Spaces
+#### Examining the State and Action Spaces
 
          # reset the environment
          env_info = env.reset(train_mode=True)[brain_name]
@@ -102,7 +105,7 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
          print('There are {} agents. Each observes a state with length: {}'.format(states.shape[0], state_size))
          print('The state for the first agent looks like:', states[0])
 
-#### Take Random Actions in the Environment
+#### Taking Random Actions in the Environment
 
          for i in range(1, 6):                                      # play game for 5 episodes
              env_info = env.reset(train_mode=False)[brain_name]     # reset the environment    
