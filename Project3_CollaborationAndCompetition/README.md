@@ -62,10 +62,10 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
 
 ## How to start the environment
 
-#### installing Python 
+#### Install Python 
       !pip -q install ./python
       
-#### importing the needed libraries
+#### Import the needed libraries
 
       from maddpg_agent import Agent
       from collections import deque
@@ -77,16 +77,16 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
       from unityagents import UnityEnvironment
       %matplotlib inline
       
-#### starting the environment
+#### Start the environment
 
       env = UnityEnvironment(file_name="/data/Tennis_Linux_NoVis/Tennis")
       
-#### getting the default brain
+#### Get the default brain
 
       brain_name = env.brain_names[0]
       brain = env.brains[brain_name]
       
-#### Examining the State and Action Spaces
+#### Examine the State and Action Spaces
 
          # reset the environment
          env_info = env.reset(train_mode=True)[brain_name]
@@ -105,7 +105,7 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
          print('There are {} agents. Each observes a state with length: {}'.format(states.shape[0], state_size))
          print('The state for the first agent looks like:', states[0])
 
-#### Taking Random Actions in the Environment
+#### Take Random Actions in the Environment
 
          for i in range(1, 6):                                      # play game for 5 episodes
              env_info = env.reset(train_mode=False)[brain_name]     # reset the environment    
@@ -128,7 +128,7 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
 ### How to import and run the model
    
            
- #### Defining the MADDPG function
+ #### Define the MADDPG function
 
       SOLVED_SCORE = 0.5
       CONSEC_EPISODES = 100
@@ -205,7 +205,7 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
 
        return scores_all, moving_average
 
-#### gets actions for each agent, combining them into one array and initializing agents
+#### Get actions for each agent, combine them into one array and initialize the agents
 
           def get_actions(states, add_noise):
           '''gets actions for each agent and then combines them into one array'''
@@ -223,7 +223,6 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
 
 
 
-
 ### How to plot the scores
 
          # plot the scores
@@ -238,9 +237,6 @@ Follow the instructions in `Tennis_maddpg.ipynb` to get started with training yo
         
       
         
-### Weights of the Trained Agent
-  
-  The **weights** of the trained agent are saved into the files _checkpoint_actor.pth_  and  _checkpoint_critic.pth_.
 
 
 
