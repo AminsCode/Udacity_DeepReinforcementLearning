@@ -81,7 +81,7 @@ You need at least the following three packages:
 
 ### Train the Agent
 
-   Run the notebook _Continuous_Control_ddpg.ipynb_
+   Run the notebook _Tennis_maddpg.ipynb_
    
    [1] import UnityEnvironment    
    [2] env = UnityEnvironment(file_name='/data/Reacher_Linux_NoVis/Reacher.x86_64')   # create environment      
