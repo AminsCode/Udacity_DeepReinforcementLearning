@@ -159,7 +159,7 @@ The implementation of the replay buffer can be found [here](https://github.com/t
 
 ### Hyperparameters
 
-The used Hyperparameters in 'maddpg_agent.py' are listed below:
+The used Hyperparameters in `maddpg_agent.py` are listed below:
 
      BUFFER_SIZE = int(1e6)  # replay buffer size
      BATCH_SIZE = 128        # minibatch size
@@ -340,7 +340,7 @@ The graph below shows the final training results. The agents were able to solve 
 
 
 
-### Future ideas
+### Future ideas:
 
 - Check different values for hyperparameters such as LEARNING_PERIOD, and neural network parameters fc1_units, fc2_units, etc.
 - How does the addition of new nonlinear layers in the used neural networks affect the robustness of the algorithm.
